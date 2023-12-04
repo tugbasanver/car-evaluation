@@ -4,9 +4,12 @@ A comparative research on neural networks for a multiclass classification proble
 Car Evaluation: A Comparative Research on Neural Networks for a Multiclass Classification Problem 
 
 
-1.	Introduction
+1.	Introduction:
+   
 Classification is one of the most researched areas to acquire successful solutions for decision making systems. A classification problem for a decision making consists of a dataset which has many attributes and a target to classify correctly. For many classification problems, the target variable which has to be classified is binary, it means those are basically “Yes/No” type of decision making problems[1][2]. However, some classification problems have a target variable which has more than two categories, those problems called as multiclass classification problems. In this paper, a critically evaluated comparison of the performances of two given models which will be trying to solve a decision making problem which is “Car Evaluation” based on  6 specifications of a given car was derived from a simple hierarchical decision model. In this manner, Multilayer Perceptron(MLP) model which is a type of Artificial Neural Network(ANN) and Support Vector Machine(SVM) will be researched and compared.  
-2.	Data set
+
+2.	Data set:
+   
 Car Evaluation Dataset from UCI Machine Learning Repository is used to analyse and solve the problem[3]. The dataset has 1728 values and 7 attributes. The attributes are following concept structure:
 Buying price(buying), price of the maintenance(maint), number of doors(doors), capacity in terms of persons to carry(persons), the size of luggage boot(lug_boot), estimated safety of the car(safety) and car acceptability(decision), the target variable. Almost all variables are categorical type as seen below:
 buying: vhigh, high, med, low.
@@ -20,11 +23,13 @@ At the beginning, the data is split into train and test data sets. It is signifi
 As almost all variables are categorical, it is crucial to encode all variables to numerical values to conduct a proper classification modelling. OneHotEncoder function in Python is used to encode predictor variable into binary vector variables and LabelEncoder in Python is used to encode target variable into numerical labels. 
 For a multiclass classification problem, it is significant to figure out the distribution of the target variable among the different classes. If the classification categories are not approximately equally represented in a dataset it means it may cause an imbalanced classification which is that there are too few examples of the minority class for a model to effectively learn the decision boundary. One way to solve this problem is to oversample the examples in the minority class. Among several oversampling techniques, SMOTE approach works effectively by drawing a line between the examples in the feature space and drawing a new sample at a point along that line.is chosen to rebalance the training data[5]. When the distribution of the target variable of this given dataset is analysed, it is undoubtedly clear to figure out it is imbalanced as seen in the Figure 1. The percentage of the labels in the target variable is ‘unacceptable’ with 68.7%, ‘acceptable’ with 23.5%, ‘good’ with 4.0% and ‘very good’ with 3.8, respectively.
 
-3.	Neural Network Models
+3.	Neural Network Models:
 
 a)	Multilayer Perceptron(MLP)
+
 Multilayer perceptron (MLP) model is a subclass of feedforward artificial neural network (ANN). As an artificial neural network, the multilayer perceptron does not need to make no assumptions beforehand based on the data distribution to conduct a prediction for unseen data, unlike other statistical techniques. For this reason, it is highly attractive technique comparing other predictive models. The multilayer perceptron contains a system of several layers of simple interconnected neurons. The input layer passes the input vector to the network. A multilayer perceptron may have one or more hidden layers and an output layer. Multilayer perceptrons fully connected, all layers are connected each other in several ways. Neurons are connected by weights and input/output vectors by some calculated activation functions[6]. Multilayer Perceptron algorithms are widely used in multiclass decision making classification problems. 
 Analysing the advantages of MLP structure, it implements the global approximation strategy usually uses significantly small number of hidden neurons. However, the test data sets need more hidden units and it is needed to make the number of the hidden units small to control complexity of the algorithm counts as a disadvantage of MLP structures[7].
+
 b)	Support Vector Machines(SVM)
 
 SVM is a supervised machine learning model which helps to solve classification or regression problems. SVM tries to maximise the separation boundaries between data points based on the labels with selected kernel function and penalising parameters. Support Vector Machines were designed for binary classification and do not natively support classification tasks with more than two classes. To adopt this modelling to multiclass classification problems, there are two approaches called as One-vs-Rest(also called as One-vs-All) and One-vs-One. In this paper, One-vs-Rest approach is chosen. This approach offers splitting the multi-class dataset into multiple binary classification problems. A binary classifier is then trained on each binary classification problem and predictions are made based on the model which is the most successful[8].
@@ -60,6 +65,7 @@ In the testing part the best model is loaded and fitted the unseen test data and
 
 
 The Receiver Operating Characteristic (ROC) curve is a standard technique for summarising classifier performance over a range of between true positive and false positive error rates. The Area Under the Curve (AUC) is an accepted traditional performance metric for a ROC curve[17]. As it is seen as in Figure 5, True Positive Rate is significantly high and close to 1. It is indicator if a robust prediction.
+
 b)	Model Selection, Fittings and Evaluation for SVM
 After grid search for the SVM model, the best models have around 99.9% accuracy with the C parameter of 1, gamma parameter of 0.5 and polynomial kernel type as it can be seen as in Figure 6. There are 51 fits in total but only best 17 ones are showed in the figure. Test score through grid search changes the range of 99% to 85%, which is not poor. It shows the robustness of the SVM model.   
 To analyse the learning habit of the training algorithm for chosen SVM model, learning curves for the scores through training examples, scalability of the model considering fitting times through training examples and performance of the model based on score through fitting times are plotted. According to those plots, selected SVM model shows very high performance in the training set as seen as in Figure 7. However, it is crucial to show a similar performance in the test data to prove the high prediction performance of the model.  
